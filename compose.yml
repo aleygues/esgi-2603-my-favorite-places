@@ -1,0 +1,18 @@
+services:
+  api:
+    build: ./server
+    ports:
+      - 3000:3000
+    # useful to alter env var in datasource
+    # environment:
+    #   - POSTGRES_PASSWORD=supersecret
+  client:
+    build: ./client
+    ports:
+      - 5173:5173
+  db:
+    image: postgres
+    volumes:
+      - /var/lib/postgresql
+    environment:
+      - POSTGRES_PASSWORD=supersecret
